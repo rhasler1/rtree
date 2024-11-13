@@ -1,8 +1,11 @@
 #[derive(Clone)]
 pub struct Node {
-    path: String,
-    children: Vec<String>,
+    path: String,                                   // Unique ID: Relative path to root. 
+    children: Vec<String>,                          // Unique ID(s) of this Node's children.
+    parent: Option<String>,                                 // Unique ID of parent node.
 }
+
+// TODO: figure out how to get parent information.
 
 impl Node {
     // Constructor.
@@ -10,6 +13,7 @@ impl Node {
         Self {
             path,
             children: Vec::new(),
+            parent: None,
         }
     }
 
@@ -17,6 +21,10 @@ impl Node {
     // referred to by ID, NOT through referencing.
     pub fn add_child(&mut self, child_id: String) {
         self.children.push(child_id)
+    }
+
+    pub fn add_parent(&mut self, parent_id: String) {
+        self.parent = Some(parent_id);
     }
 
     // Returns a copy of path.

@@ -16,7 +16,13 @@ impl Traverse {
         self.root.clone()
     }
 
-    pub fn traverse(&self) -> Option<Vec<Node>> {
+    // Need to write a function to do a step traversal.
+    // Inputs:
+    // Left, Right to move selection between children.
+    // Enter -> move focus node to selected child node.
+    // Up -> move focus to parent Node.
+
+    pub fn traverse_dir(&self) -> Option<Vec<Node>> {
         let mut tree_vector: Vec<Node> = Vec::new();
         for entry in WalkDir::new(&self.root) {
             match entry {

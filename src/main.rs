@@ -1,9 +1,6 @@
 use std::{env, process::exit};
-use node::Node;
-use traverse::Traverse;
 use tree::Tree;
-use walkdir::WalkDir;
-
+use node::Node;
 pub mod node;
 pub mod nodes;
 pub mod tree;
@@ -19,11 +16,9 @@ fn main() {
     let path: String = args[1].parse().expect("Please provide a valid String.");
 
     // 3-BuildTree::begin
-    let vec = Traverse::new(path);
-    let vec = vec.traverse();
-
+    let vec: Option<Vec<Node>> = Tree::build_tree(&path);
     let tree: Option<Tree> = if let Some(vec) = vec {
-        Some(Tree::new(&vec))
+        Some(Tree::new(&path, &vec))
     } else {
         None
     };
@@ -35,6 +30,4 @@ fn main() {
     else {
         tree.unwrap().print()
     }
-
-
 }
